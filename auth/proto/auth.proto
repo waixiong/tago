@@ -38,9 +38,11 @@ message TagoAuth {
 message TagoRegister {
     string username = 1;
     string password = 2;
+    // other detail
 }
 
 // The response message containing result string
 message AuthResponse {
     string result = 1;
+    // user related data
 }
