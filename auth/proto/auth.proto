@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.urcompanyname.tago.authproto";
+option java_outer_classname = "AuthenticationService";
+
+package authproto;
+
+service AuthenticationService {
+    // reuqest response
+    rpc thirdPartySignIn (ThirdPartyAuth) returns (AuthResponse) {}
+
+    // reuqest response
+    rpc tagoSignIn (TagoAuth) returns (AuthResponse) {}
+
+    // reuqest response
+    rpc register (TagoRegister) returns (AuthResponse) {}
+}
+
+// The request message sign in detail.
+message ThirdPartyAuth {
+    enum Provider {
+        GOOGLE = 0;
+        FACEBOOK = 1;
+    }
+    Provider provider = 1;
+    string id_token = 2;
+    // string access_token = 3;
+}
+ 
+// The request message sign in detail.
+message TagoAuth {
+    string username = 1;
+    string password = 2;
+}
+
+// The request message sign up detail.
+message TagoRegister {
+    string username = 1;
+    string password = 2;
+}
+
+// The response message containing result string
+message AuthResponse {
+    string result = 1;
+}
